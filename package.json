@@ -1,0 +1,20 @@
+{
+    "name": "cs-546-lab-6",
+    "version": "1.0.0",
+    "description": "My lab 6 module",
+    "main": "app.js",
+    "scripts": {
+        "seed": "node ./tasks/seed.js",
+        "start": "node app.js"
+    },
+    "author": "Jacob Roessler 10448394",
+    "license": "ISC",
+    "dependencies": {
+        "express": "^4.17.1",
+        "mongodb": "^4.1.3",
+        "express-handlebars": "^5.3.4",
+        "express-session": "^1.17.2",
+        "handlebars": "^4.7.7",
+        "bcryptjs": "^2.4.3"
+    }
+}
