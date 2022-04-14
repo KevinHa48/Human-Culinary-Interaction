@@ -1,11 +1,13 @@
-const MongoClient = require('mongodb').MongoClient;
+const { MongoClient, ServerApiVersion } = require('mongodb');
+
 const settings = {
-    mongoConfig: {
-        serverUrl: 'mongodb://localhost:27017/',
-        database: 'Human_Culinary_Interaction',
-    },
+   db_name: 'sample_training',
+   password: 'food'
 };
+
 const mongoConfig = settings.mongoConfig;
+const uri = `mongodb+srv://hci-user:${settings.password}@hci.hy7nw.mongodb.net/${settings.db_name}?retryWrites=true&w=majority`;
+const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true, serverApi: ServerApiVersion.v1 });
 
 let _connection = undefined;
 let _db = undefined;
@@ -13,13 +15,13 @@ let _db = undefined;
 module.exports = {
     connectToDb: async () => {
         if (!_connection) {
-            _connection = await MongoClient.connect(mongoConfig.serverUrl);
-            _db = await _connection.db(mongoConfig.database);
+            __connection = await client.connect();
+            _db = await client.db()
         }
 
         return _db;
     },
-    closeConnection: () => {
-        _connection.close();
+    closeConnection: async() => {
+       await __connection.close()
     },
 };
