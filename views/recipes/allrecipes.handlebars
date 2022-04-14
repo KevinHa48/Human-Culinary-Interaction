@@ -1,12 +1,40 @@
+<head>
+<style>
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+li {
+  float: left;
+}
+
+li a {
+  display: block;
+  color: black;
+  text-align: left;
+  padding: 16px;
+  text-decoration: none;
+}
+
+</style>
+</head>
 <div>
     <h1>Check out our recipes!</h1>
     <ul>
         {{#each recipes}}
             <li>
+                <a href={{_id}}>
                 <div>
                     <h2>{{title}}</h2>
-                    <p>{{description}}</p>
+                    {{#if description}}
+                        <p>{{description}}</p>
+                    {{/if}}
+                    <p>Recipe by {{poster}}</p>
                 </div>
+                </a>
             </li>
         {{/each}}
     </ul>
