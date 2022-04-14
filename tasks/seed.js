@@ -103,11 +103,9 @@ async function main() {
        3. Cook until second side is lightly browned. Serve, or hold on an ovenproof plate in a 200-degree oven for up to 15 minutes.`,
         [{food:'all-purpose flour', units: 'cup', quantity: 1},{food:'backing powder', units: 'teaspoon', quantity: 2},{food:'salt', units: 'teaspoon', quantity: 0.25},{food:'sugar', units: 'tablespoon', quantity: 1},{food:'eggs', units: 'whole', quantity: 2},{food:'milk', units: 'cups', quantity: 2},{food:'melted and cooled butter', units: 'tablespoons', quantity: 2}]
     );
-    const pancakeId = pancakeCake._id;
+    const pancakeId = pancakes._id;
 
     await recipes.remove(eggsId);
-    await recipes.remove(chiliId);
-    await recipes.remove(chiliId2);
 
     await recipes.addComment(chiliId, poster.id, 'This chili sucks');
     await recipes.addComment(chiliId, poster.id, 'I lied');
@@ -118,11 +116,15 @@ async function main() {
     await recipes.addComment(guacamoleId, poster2.id, "Not as good as garlic bread");
     await recipes.addComment(pancakeId, poster2.id, "Not as good as garlic bread");
     await recipes.addComment(garlicBreadId, poster3.id, "Not as good as truffle fries");
-    
-    
-
 
     await recipes.addLike(chiliId);
+    
+    await recipes.remove(chiliId);
+    await recipes.remove(chiliId2);
+    
+    
+
+
 
     console.dir(await recipes.getAll(), { depth: null });
 
