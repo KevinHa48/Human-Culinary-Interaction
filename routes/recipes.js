@@ -24,6 +24,19 @@ router.get('/:id', async (req, res) => {
     }
 });
 
-router.post('/', async (req, res) => {});
+router.post('/', async (req, res) => {
+    const { title, img, poster, description, ingredients } = req.body;
+    if (!title || !img || !poster || !description || !ingredients) {
+        res.status(400).render('error', { error: 'missing fields' });
+        return;
+    }
+
+    try {
+        const newRecipe = await recipeData.create(title, img, poster, description, ingredients);
+        res.status(200).render('recipes/recipe', { recipe: newRecipe });
+    } catch (e) {
+        res.status(500).render('error', { error: e.message });
+    }
+});
 
 module.exports = router;
