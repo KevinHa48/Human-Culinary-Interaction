@@ -11,13 +11,13 @@ async function main() {
     const poster = await users.createUser('masterchef', '123abc');
 
     // TODO ADD DATA
-    const eggs = await recipes.create(poster.id, 'An awesome egg recipe', [
+    const eggs = await recipes.create('Egg recipe', poster.id, 'An awesome egg recipe', [
         { food: 'eggs', units: 'grams', quantity: 500 },
     ]);
 
     const eggsId = eggs._id;
 
-    const chili = await recipes.create(poster.id, 'I need this chili in my bones', [
+    const chili = await recipes.create('Crazy Chili Recipe', poster.id, 'I need this chili in my bones', [
         { food: 'beans', units: 'grams', quantity: 5000 },
     ]);
 
