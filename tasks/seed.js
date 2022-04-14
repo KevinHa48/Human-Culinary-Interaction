@@ -106,6 +106,8 @@ async function main() {
     const pancakeId = pancakeCake._id;
 
     await recipes.remove(eggsId);
+    await recipes.remove(chiliId);
+    await recipes.remove(chiliId2);
 
     await recipes.addComment(chiliId, poster.id, 'This chili sucks');
     await recipes.addComment(chiliId, poster.id, 'I lied');
