@@ -20,8 +20,9 @@ function stringToId(id) {
 module.exports = {
     // data functions go here
 
-    async create(title, poster, description, ingredients) {
+    async create(title, img, poster, description, ingredients) {
         if (!title) throw new Error('No title provided.');
+        if (!img) throw new Error('No title provided.');
         if (!poster) throw new Error('No poster provided.');
         if (!description) throw new Error('No description provided.');
         if (!ingredients) throw new Error('No ingredients provided.');
@@ -29,11 +30,13 @@ module.exports = {
         checkString(title, 'title');
         checkString(poster, 'poster');
         checkString(description, 'description');
+        checkString(img, 'img');
 
         if (!Array.isArray(ingredients)) throw new Error('Ingredients must be an array');
 
         const newRecipeInfo = {
             title: title,
+            img: img,
             poster: poster,
             description: description,
             ingredients: ingredients,
@@ -99,15 +102,18 @@ module.exports = {
         if (!poster) throw new Error('No poster provided.');
         if (!description) throw new Error('No description provided.');
         if (!ingredients) throw new Error('No ingredients provided.');
+        if (!img) throw new Error('No title provided.');
 
         checkString(title, 'title');
         checkString(poster, 'poster');
         checkString(description, 'description');
+        checkString(img, 'img');
 
         if (!Array.isArray(ingredients)) throw new Error('Ingredients must be an array');
 
         const updatedRecipeInfo = {
             title: title,
+            ing: img,
             poster: poster,
             description: description,
             ingredients: ingredients,
