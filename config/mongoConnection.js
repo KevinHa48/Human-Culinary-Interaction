@@ -1,7 +1,7 @@
 const { MongoClient, ServerApiVersion } = require('mongodb');
 
 const settings = {
-   db_name: 'sample_training',
+   db_name: 'hci_db',
    password: 'food'
 };
 
