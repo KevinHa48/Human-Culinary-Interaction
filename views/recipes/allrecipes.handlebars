@@ -11,10 +11,10 @@
     <h1>Check out our recipes!</h1>
     <ul = "list-group list-group-horizontal">
         {{#each recipes}}
-                <a href="/recipes/{{_id}}" class="list-group-item list-group-item-active">
+                <a href="/recipes/{{_id}}" class="rounded-1 border border-2 list-group-item list-group-item-active">
                 <div>
                     {{#if img}}
-                    <img src={{img}} alt="" width="350" height="350">
+                    <img src={{img}} alt="" class="img-fluid">
                     {{/if}}
                     <h2>{{title}}</h2>
                     {{#if description}}
