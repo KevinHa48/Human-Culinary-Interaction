@@ -2,7 +2,7 @@ const MongoClient = require('mongodb').MongoClient;
 const settings = {
     mongoConfig: {
         serverUrl: 'mongodb://localhost:27017/',
-        database: 'Human_Culinar_Interaction',
+        database: 'Human_Culinary_Interaction',
     },
 };
 const mongoConfig = settings.mongoConfig;
