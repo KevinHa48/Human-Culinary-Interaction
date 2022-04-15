@@ -138,14 +138,13 @@ module.exports = {
         return await this.get(id);
     },
 
-    async addComment(recipeId, posterId, commentText) {
+    async addComment(recipeId, poster, commentText) {
         if (!recipeId) throw new Error('You must provide a recipeId to search for.');
         if (typeof recipeId !== 'string') throw new Error('recipeId must be a string.');
         if (!ObjectId.isValid(recipeId)) throw new Error('Invalid objectId');
 
-        if (!posterId) throw new Error('You must provide a posterId.');
-        if (typeof posterId !== 'string') throw new Error('posterId must be a string.');
-        if (!ObjectId.isValid(posterId)) throw new Error('Invalid objectId');
+        if (!poster) throw new Error('You must provide a posterId.');
+        if (typeof poster !== 'string') throw new Error('posterId must be a string.');
 
         if (!commentText) throw new Error('No commentText provided.');
         checkString(commentText, 'commentText');
@@ -156,7 +155,7 @@ module.exports = {
         recipe = await this.get(recipeId);
 
         const newComment = {
-            poserId: posterId,
+            poster: poster,
             text: commentText,
         };
 

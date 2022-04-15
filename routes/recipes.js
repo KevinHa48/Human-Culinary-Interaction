@@ -41,4 +41,19 @@ router.post('/', async (req, res) => {
     }
 });
 
+router.post('/comments/:id', async (req, res) => {
+    const { poster, commentText } = req.body;
+    if (!posterId || !commentText) {
+        res.status(400).render('error', { error: 'missing fields' });
+        return;
+    }
+
+    try {
+        newRecipe = await recipeData.addComment(req.params.id, poster, commentText);
+        res.status(200).render(`recipes/${req.params.id}`, { recipe: newRecipe });
+    } catch (e) {
+        res.status(500).render('error', { error: e.message });
+    }
+});
+
 module.exports = router;
