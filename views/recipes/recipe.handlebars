@@ -33,7 +33,7 @@
             <br>
             <ul class="list-group">
                 {{#each recipe.ingredients}}
-                    <li class="list-group-item list-group-item-danger text-dark">{{food}} ({{quantity}} {{units}})</li>
+                    <li class="fw-bold list-group-item bg-danger bg-gradient text-white">{{food}} ({{quantity}} {{units}})</li>
                 {{/each}}
             </ul>
             <br>
@@ -47,13 +47,13 @@
             <ul class="list-group">
                 {{#each recipe.comments}}
                 <li class="list-group-item text-dark">
-                    <div class="d-flex">
+                    <div class="d-flex ">
                         <!--<div class="flex-shrink-0">
                                 <img src="..." alt="...">
                         </div>-->
                         <div class="flex-grow-1 ms-3">
                             <h5>{{poster}}</h5>
-                            <p>{{text}}</p>
+                            <p class="text-secondary">{{text}}</p>
                         </div>
                     </div>
                 </li>
