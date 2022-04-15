@@ -177,7 +177,7 @@ async function main() {
     const burrito = await recipes.create(
         'Bean Burrito recipe',
         'https://imagesvc.meredithcorp.io/v3/mm/image?url=https%3A%2F%2Fassets.marthastewart.com%2Fstyles%2Fwmax-750%2Fd21%2F1105_edf_beanburritos%2F1105_edf_beanburritos_vert_0_horiz.jpg%3Fitok%3DECTcTQpD',
-        //poster1.id,
+        //poster.id,
         'TheGuyWhoEatsFood',
         'Big Bean Burrito recipe',
         [{ food: 'beans', units: 'grams', quantity: 500 }, { food: 'tortilla', units: 'whole', quantity: 1 }, { food: 'cheese', units: 'ounces', quantity: 8 }, { food: 'lettuce', units: 'ounces', quantity: 8 }]
@@ -201,7 +201,7 @@ async function main() {
     await recipes.addComment(lasagaId, poster4.id, "This is not how momma used to make");
     await recipes.addComment(grilledcheeseId, poster4.id, "Hey whoa buddy that's a lotta cheese");
     await recipes.addComment(haggisId, poster4.id, "Who would actually eat this?");
-    await recipes.addComment(burritoId, poster1.id, "yummy yummy beans");
+    await recipes.addComment(burritoId, poster.id, "yummy yummy beans");
 
 
 
