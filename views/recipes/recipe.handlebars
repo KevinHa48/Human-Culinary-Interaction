@@ -15,6 +15,14 @@
         <span class="fs-4 fw-bold text-dark navbar-text">Human Culinary Interaction</span>
     </a>
     <div class="float-end">
+    {{#if username}}
+    <span class="me-4 fs-4 fw-bold text-dark navbar-text">Logged in as: {{username}}</span>
+    <a class="text-decoration-none" href="/users/logout">
+        <img src="/public/register symbol.png" width="40" height="40" class="me-1 d-inline-block align-top" alt="">
+        <span class="me-4 fs-4 fw-bold text-dark navbar-text">Logout</span>
+    </a>
+    {{else}}
+
     <a class="text-decoration-none" href="/users">
         <img src="/public/login symbol.png" width="40" height="40" class="me-1 d-inline-block align-top" alt="">
         <span class="me-4 fs-4 fw-bold text-dark navbar-text">Login</span>
@@ -23,6 +31,8 @@
         <img src="/public/register symbol.png" width="40" height="40" class="me-1 d-inline-block align-top" alt="">
         <span class="me-4 fs-4 fw-bold text-dark navbar-text">Register</span>
     </a>
+    {{/if}}
+
     </div>  
 </nav>
 <br>

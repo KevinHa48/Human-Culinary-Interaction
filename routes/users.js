@@ -83,7 +83,7 @@ router.post('/login', async (req, res) => {
 
 router.get('/logout', async (req, res) => {
     req.session.destroy();
-    res.render('users/logout', { title: 'Logged Out' });
+    res.redirect('/recipes');
 });
 
 module.exports = router;

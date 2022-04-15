@@ -6,9 +6,11 @@ const userData = data.users;
 
 //Routes go here
 router.get('/', async (req, res) => {
+    const username = req.session && req.session.user ? req.session.user : undefined;
+
     try {
         const allRecipes = await recipeData.getAll();
-        res.render('recipes/allrecipes', { recipes: allRecipes });
+        res.render('recipes/allrecipes', { recipes: allRecipes, username: username });
     } catch (e) {
         res.status(404).render('error', { error: 'recipes not found' });
         return;
@@ -16,10 +18,12 @@ router.get('/', async (req, res) => {
 });
 
 router.get('/:id', async (req, res) => {
+    const username = req.session && req.session.user ? req.session.user : undefined;
+
     try {
         const recipe = await recipeData.get(req.params.id);
 
-        res.status(200).render('recipes/recipe', { recipe: recipe });
+        res.status(200).render('recipes/recipe', { recipe: recipe, username: username });
     } catch (e) {
         res.status(404).render('error', { error: 'Recipe not found' });
         return;
