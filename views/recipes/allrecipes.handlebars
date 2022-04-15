@@ -6,20 +6,20 @@
 <body>
 <nav class="navbar sticky-top navbar-light bg-light">
     <a class="navbar text-decoration-none" href="/recipes">
-        <img src="/public/forkandknife.png" width="40" height="40" class="d-inline-block align-top" alt="">
-        <span class="mx-3 fs-4 fw-bold text-dark navbar-text">Human Culinary Interaction</span>
+        <img src="/public/forkandknife.png" width="40" height="40" class="mx-3 d-inline-block align-top" alt="">
+        <span class="fs-4 fw-bold text-dark navbar-text">Human Culinary Interaction</span>
     </a>
 </nav>
 <br>
 <br>
 <div class="container-fluid">
-    <div class="row row-cols-6 g-4">
+    <div class="row row-cols-4 g-4">
         {{#each recipes}}
         <div class="col">
                 <a href="/recipes/{{_id}}" class="text-decoration-none active">
                 <div class="card">
                     {{#if img}}
-                    <img src="{{img}}" class="card-img-top" alt="">
+                    <img src="{{img}}" class="card-img-top" style="max-height: 15rem;" alt="">
                     {{/if}}
                     <div class="card-body">
                         <h2 class="card-title text-dark">{{title}}</h2>
