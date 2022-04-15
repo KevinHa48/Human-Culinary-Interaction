@@ -12,6 +12,12 @@
          <div class="col-md-6 col-sm-12">
             <div class="login-form">
                <form  action='/users/login' method='POST'>
+                     <div class="form-group">
+                    {{#if error}}
+                        <div>{{error}}</div>
+                        {{else}}
+                    {{/if}}
+                  </div>
                   <div class="form-group">
                     <label>Username : </label>   
                     <input type="text" class="form-control" placeholder="Enter Username" name="username" > 
