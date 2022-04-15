@@ -24,7 +24,7 @@ const validUserPass = (username, password) => {
 
 router.get('/', async (req, res) => {
     if (req.session.user) {
-        res.redirect('private');
+        res.redirect('/recipes');
     } else {
         res.render('users/login', { title: 'Login Page' });
     }
@@ -32,7 +32,7 @@ router.get('/', async (req, res) => {
 
 router.get('/signup', async (req, res) => {
     if (req.session.user) {
-        res.redirect('private');
+        res.redirect('/recipes');
     } else {
         res.render('users/signup', { title: 'Sign Up Page' });
     }
@@ -51,7 +51,7 @@ router.post('/signup', async (req, res) => {
     try {
         const inserted = await usersData.createUser(username, password);
         if (inserted.userInserted) {
-            res.redirect('/');
+            res.redirect('/recipes');
         } else {
             res.status(500).render('users/signup', { title: 'Sign Up Page', error: 'Internal Server Error' });
         }
@@ -78,7 +78,7 @@ router.post('/login', async (req, res) => {
         return;
     }
     req.session.user = username.trim().toLowerCase();
-    res.redirect('/private');
+    res.redirect('/recipes');
 });
 
 router.get('/logout', async (req, res) => {
