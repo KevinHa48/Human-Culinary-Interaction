@@ -43,6 +43,12 @@
             <p class="text-dark">{{recipe.directions}}</p>
             <br>
             <br>
+                <div class="float-end">
+                <img src="/public/likes.png" width="40" height="40" class="mx-3" alt="">
+            <h4>{{recipe.likes}} Likes</h4>
+            </div>
+            <br>
+            <br>
             <h3>Comments:</h3> 
             <ul class="list-group">
                 {{#each recipe.comments}}
