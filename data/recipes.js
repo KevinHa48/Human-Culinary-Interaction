@@ -143,8 +143,8 @@ module.exports = {
         if (typeof recipeId !== 'string') throw new Error('recipeId must be a string.');
         if (!ObjectId.isValid(recipeId)) throw new Error('Invalid objectId');
 
-        if (!poster) throw new Error('You must provide a posterId.');
-        if (typeof poster !== 'string') throw new Error('posterId must be a string.');
+        if (!poster) throw new Error('You must provide a poster.');
+        if (typeof poster !== 'string') throw new Error('poster must be a string.');
 
         if (!commentText) throw new Error('No commentText provided.');
         checkString(commentText, 'commentText');

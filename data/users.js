@@ -70,7 +70,7 @@ let exportedMethods = {
 
         const newUser = await this.get(insertInfo.insertedId.toString());
 
-        return { id: newUser._id, userInserted: true };
+        return { id: newUser._id, username: newUsername, userInserted: true };
     },
     async checkUser(username, password) {
         validUserPass(username, password);

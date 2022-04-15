@@ -71,15 +71,10 @@ async function main() {
         'BobTheCook',
         'Savory fries with a dash of truffle flavor.',
         `Fry Prep Instructions
-
         To wash: Fill large bowl ½ way with cold water. Slice potatoes into 1/4 - 3/8 inch strips. Place cut potatoes directly into cold water. Agitate potatoes to remove dirt and excess starch. Put aside. To make a salt water bath, fill a second large bowl 1/4 way with warm water, add Kosher Salt, stir to dissolve. Add ¼ way with cold water. Transfer potatoes from first bowl to salted water bath. Potatoes can be stored in the refrigerator until you are ready to blanch.
-
         To blanch: Heat fry oil in fryer to 300 degrees. Shake excess water from potatoes and place in fry basket in batches. Drop into oil and allow to cook for 2 minutes and 15 seconds. Remove from oil and shake aggressively to separate fries. Place cooked fries on a sheet tray and keep cold until ready for final cooking step. Wait for fry oil temperature to return to 300 degrees before continuing with next batch.
-
         Yields 7 pounds blanched potatoes
-
         Truffle Fries Instructions
-
         Place 1 1/2 cups (12 oz) of blanched potatoes in hot fryer until crisp. Drain well. Place fries in a metal mixing bowl and toss with grated cheese, truffle oil and salt. Enjoy.`,
         [
             { food: 'Idaho Russet Potatoes', units: 'cups', quantity: 1.5 },
@@ -162,7 +157,11 @@ async function main() {
         //poster3.id,
         'ItalianJimmy',
         'My mommas spaghetti and meatballs recipe',
-        'directions go here',
+        `1. In a large pot of salted boiling water, cook noodles until al dente. Drain.
+        2. In a large bowl, form beef into 16 balls.
+        3. In a large pot over medium heat, heat oil. Add meatballs and cook, turning occasionally, until browned on all sides, about 10 minutes. Transfer meatballs to a plate.
+        4. Add tomato sauce to pot. Simmer until sauce has thickened, 8 to 10 minutes.
+        5. Serve pasta with a healthy scoop of meatballs and sauce.`,
         [
             { food: 'noodles', units: 'whole', quantity: 50 },
             { food: 'tomato sauce', units: 'cup', quanity: 2 },
@@ -180,7 +179,10 @@ async function main() {
         //poster4.id,
         'ItalianTimmy',
         'My mommas pizza recipe',
-        'directions go here',
+        `1. Preheat pizza stone (or pizza pan or baking sheet).
+        2. Flatten dough ball, and stretch out into a round.
+        3. Spread with tomato sauce and sprinkle with cheese.
+        4. Bake pizza.`,
         [
             { food: 'pizza dough', units: 'pound', quantity: 1 },
             { food: 'tomato sauce', units: 'cup', quanity: 2 },
@@ -196,7 +198,10 @@ async function main() {
         //poster4.id,
         'ItalianLimmy',
         'My mommas lasagna recipe',
-        'directions go here',
+        `1. Cook beef and garlic in tomato sauce in oven.
+        2. Boil pasta in a pot.
+        3. Spread layers of meat sauce with pasta and layer cheese above.
+        4. Bake in oven.`,
         [
             { food: 'pasta', units: 'pound', quantity: 1 },
             { food: 'tomato sauce', units: 'cup', quanity: 2 },
@@ -214,7 +219,8 @@ async function main() {
         //poster4.id,
         'TheCheeseGuy',
         'my grilled cheese recipe ooh boy ooh wee i love my cheese',
-        'directions go here',
+        `1. Spread cheese slices onto bread.
+        2. Toast bread with cheese.`,
         [
             { food: 'bread', units: 'slice', quantity: 2 },
             { food: 'cheese', units: 'ounces', quantity: 4 },
@@ -229,7 +235,8 @@ async function main() {
         //poster4.id,
         'ScottyWallace',
         'Classic Scottish Haggis recipe',
-        'directions go here',
+        `1. Mince sheep meats into a pan.
+        2. Cook and serve.`,
         [
             { food: 'sheep liver', units: 'whole', quantity: 1 },
             { food: 'sheep stomach', units: 'whole', quantity: 1 },
@@ -246,7 +253,8 @@ async function main() {
         //poster1.id,
         'TheGuyWhoEatsFood',
         'Big Bean Burrito recipe',
-        'directions go here',
+        `1. Toast tortilla.
+        2. Wrap tortilla with beans, cheese, and lettuce.`,
         [
             { food: 'beans', units: 'grams', quantity: 500 },
             { food: 'tortilla', units: 'whole', quantity: 1 },
@@ -259,25 +267,29 @@ async function main() {
 
     await recipes.remove(eggsId);
 
-    await recipes.addComment(chiliId, poster.id, 'This chili sucks');
-    await recipes.addComment(chiliId, poster.id, 'I lied');
+    await recipes.addComment(chiliId, poster.username, 'This chili sucks');
+    await recipes.addComment(chiliId, poster.username, 'I lied');
     await recipes.addComment(
         garlicBreadId,
-        poster.id,
+        poster.username,
         'OMG, I love garlic bread, I cannot wait to try this when I get home from work today!!'
     );
-    await recipes.addComment(garlicBreadId, poster2.id, "Thx so much, masterchef. It is my grandma's old recipe!");
-    await recipes.addComment(truffleFriesId, poster2.id, 'Not as good as garlic bread');
-    await recipes.addComment(funnelCakeId, poster2.id, 'Not as good as garlic bread');
-    await recipes.addComment(guacamoleId, poster2.id, 'Not as good as garlic bread');
-    await recipes.addComment(pancakeId, poster2.id, 'Not as good as garlic bread');
-    await recipes.addComment(garlicBreadId, poster3.id, 'Not as good as truffle fries');
-    await recipes.addComment(spaghettId, poster3.id, 'Not as good as truffle fries');
-    await recipes.addComment(pizzaId, poster4.id, 'Just like momma used to make');
-    await recipes.addComment(lasagaId, poster4.id, 'This is not how momma used to make');
-    await recipes.addComment(grilledcheeseId, poster4.id, "Hey whoa buddy that's a lotta cheese");
-    await recipes.addComment(haggisId, poster4.id, 'Who would actually eat this?');
-    await recipes.addComment(burritoId, poster.id, 'yummy yummy beans');
+    await recipes.addComment(
+        garlicBreadId,
+        poster2.username,
+        "Thx so much, masterchef. It is my grandma's old recipe!"
+    );
+    await recipes.addComment(truffleFriesId, poster2.username, 'Not as good as garlic bread');
+    await recipes.addComment(funnelCakeId, poster2.username, 'Not as good as garlic bread');
+    await recipes.addComment(guacamoleId, poster2.username, 'Not as good as garlic bread');
+    await recipes.addComment(pancakeId, poster2.username, 'Not as good as garlic bread');
+    await recipes.addComment(garlicBreadId, poster3.username, 'Not as good as truffle fries');
+    await recipes.addComment(spaghettId, poster3.username, 'Not as good as truffle fries');
+    await recipes.addComment(pizzaId, poster4.username, 'Just like momma used to make');
+    await recipes.addComment(lasagaId, poster4.username, 'This is not how momma used to make');
+    await recipes.addComment(grilledcheeseId, poster4.username, "Hey whoa buddy that's a lotta cheese");
+    await recipes.addComment(haggisId, poster4.username, 'Who would actually eat this?');
+    await recipes.addComment(burritoId, poster.username, 'yummy yummy beans');
 
     await recipes.addLike(chiliId);
     await recipes.remove(chiliId2);
