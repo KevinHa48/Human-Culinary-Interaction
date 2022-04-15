@@ -20,17 +20,20 @@ function stringToId(id) {
 module.exports = {
     // data functions go here
 
-    async create(title, img, poster, description, ingredients) {
+    async create(title, img, poster, description, directions, ingredients) {
         if (!title) throw new Error('No title provided.');
         if (!img) throw new Error('No title provided.');
         if (!poster) throw new Error('No poster provided.');
         if (!description) throw new Error('No description provided.');
+        if (!directions) throw new Error('No directions provided.');
+
         if (!ingredients) throw new Error('No ingredients provided.');
 
         checkString(title, 'title');
         checkString(poster, 'poster');
         checkString(description, 'description');
         checkString(img, 'img');
+        checkString(directions, 'directions');
 
         if (!Array.isArray(ingredients)) throw new Error('Ingredients must be an array');
 
@@ -39,6 +42,7 @@ module.exports = {
             img: img,
             poster: poster,
             description: description,
+            directions: directions,
             ingredients: ingredients,
             comments: [],
             likes: 0,
@@ -103,11 +107,13 @@ module.exports = {
         if (!description) throw new Error('No description provided.');
         if (!ingredients) throw new Error('No ingredients provided.');
         if (!img) throw new Error('No title provided.');
+        if (!directions) throw new Error('No directions provided.');
 
         checkString(title, 'title');
         checkString(poster, 'poster');
         checkString(description, 'description');
         checkString(img, 'img');
+        checkString(directions, 'directions');
 
         if (!Array.isArray(ingredients)) throw new Error('Ingredients must be an array');
 
@@ -116,6 +122,7 @@ module.exports = {
             ing: img,
             poster: poster,
             description: description,
+            directions: directions,
             ingredients: ingredients,
             comments: comments,
             likes: likes,
