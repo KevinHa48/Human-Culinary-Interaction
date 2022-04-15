@@ -16,6 +16,16 @@ router.get('/', async (req, res) => {
         return;
     }
 });
+router.get('/create', async (req, res) => {
+    const username = req.session && req.session.user ? req.session.user : undefined;
+
+    try {
+        res.render('recipes/create', { username: username });
+    } catch (e) {
+        res.status(404).render('error', { error: 'recipes not found' });
+        return;
+    }
+});
 
 router.get('/:id', async (req, res) => {
     const username = req.session && req.session.user ? req.session.user : undefined;
@@ -47,14 +57,17 @@ router.post('/', async (req, res) => {
 
 router.post('/comments/:id', async (req, res) => {
     const { poster, commentText } = req.body;
-    if (!posterId || !commentText) {
+
+    const username = req.session && req.session.user ? req.session.user : undefined;
+
+    if (!poster || !commentText) {
         res.status(400).render('error', { error: 'missing fields' });
         return;
     }
 
     try {
         newRecipe = await recipeData.addComment(req.params.id, poster, commentText);
-        res.status(200).render(`recipes/${req.params.id}`, { recipe: newRecipe });
+        res.status(200).render(`recipes/recipe`, { recipe: newRecipe, username: username });
     } catch (e) {
         res.status(500).render('error', { error: e.message });
     }

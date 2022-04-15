@@ -17,6 +17,10 @@
     <div class="float-end">
     {{#if username}}
     <span class="me-4 fs-4 fw-bold text-dark navbar-text">Logged in as: {{username}}</span>
+        <a class="text-decoration-none" href="/recipes/create">
+        <img src="/public/add symbol.png" width="40" height="40" class="me-1 d-inline-block align-top" alt="">
+        <span class="me-4 fs-4 fw-bold text-dark navbar-text">Add Recipe</span>
+    </a>
     <a class="text-decoration-none" href="/users/logout">
         <img src="/public/register symbol.png" width="40" height="40" class="me-1 d-inline-block align-top" alt="">
         <span class="me-4 fs-4 fw-bold text-dark navbar-text">Logout</span>
@@ -69,7 +73,18 @@
             </div>
             <br>
             <br>
-            <h3>Comments:</h3> 
+            <h3>Comments:</h3>
+            {{#if username}}
+            <form class="form-inline" action="/recipes/comments/{{recipe._id}}" method="POST">
+                <div class="form-group mb-2">
+                        <input type="text" class="form-control" id="commentText" name="commentText" placeholder="Enter comment here...">
+                        <input type="hidden" class="form-control" id="poster" name="poster" value="{{username}}">
+
+                </div>
+                <button type="submit" class="btn btn-primary mb-2">Post Comment</button>
+            </form>
+            {{/if}}
+
             <ul class="list-group">
                 {{#each recipe.comments}}
                 <li class="list-group-item text-dark">

@@ -1,0 +1,49 @@
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+<div class="container px-5 my-5">
+    <form id="recipeForm">
+        <div class="mb-3">
+            <label class="form-label" for="title">Title</label>
+            <input class="form-control" id="title" type="text" placeholder="Title" data-sb-validations="required" />
+            <div class="invalid-feedback" data-sb-feedback="title:required">Title is required.</div>
+        </div>
+        <div class="mb-3">
+            <label class="form-label" for="image">Image</label>
+            <input class="form-control" id="image" type="url" placeholder="Image" data-sb-validations="required" />
+            <div class="invalid-feedback" data-sb-feedback="image:required">Image is required.</div>
+        </div>
+        <div class="mb-3">
+            <label class="form-label" for="descrption">Descrption</label>
+            <textarea class="form-control" id="descrption" type="text" placeholder="Descrption" style="height: 10rem;" data-sb-validations="required"></textarea>
+            <div class="invalid-feedback" data-sb-feedback="descrption:required">Descrption is required.</div>
+        </div>
+        <div class="mb-3">
+            <label class="form-label" for="howManyStepsAreInYourRecipe">How many steps are in your recipe?</label>
+            <div id="stepRows"></div>
+            <button id="addStep" type="button" class="btn btn-info">Add Step</button>
+        </div>
+        <div class="mb-3">
+            <label class="form-label" for="howManyIngredientsAreInYourRecipe">How many ingredients are in your recipe?</label>
+            <div id="ingredientRows"></div>
+            <button id="addIngredient" type="button" class="btn btn-info">Add Ingredient</button>
+        </div>
+        <div class="d-none" id="submitSuccessMessage">
+            <div class="text-center mb-3">
+                <div class="fw-bolder">Form submission successful!</div>
+                <p>To activate this form, sign up at</p>
+                <a href="https://startbootstrap.com/solution/contact-forms">https://startbootstrap.com/solution/contact-forms</a>
+            </div>
+        </div>
+        <div class="d-none" id="submitErrorMessage">
+            <div class="text-center text-danger mb-3">Error sending message!</div>
+        </div>
+        <div class="d-grid">
+            <button class="btn btn-primary btn-lg disabled" id="submitButton" type="submit">Submit</button>
+        </div>
+        <div id='username' val='{{username}}' disabled></div>
+    </form>
+</div>
+
+<script src="/public/scripts/addrecipe.js"></script>
