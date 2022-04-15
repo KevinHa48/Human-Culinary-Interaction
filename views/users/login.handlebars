@@ -1,13 +1,32 @@
-<form action='/login' method='POST'>  
-    <label>Username : </label>   
-    <input type="text" placeholder="Enter Username" name="username" >  
-    <label>Password : </label>   
-    <input type="password" placeholder="Enter Password" name="password" >  
-    <button type="submit">Login</button>   
-</form> 
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+
+<div class="sidenav">
+         <div class="login-main-text">
+            <h2>Application<br> Login Page</h2>
+            <p>Enter information to login to your account.</p>
+         </div>
+      </div>
+      <div class="main">
+         <div class="col-md-6 col-sm-12">
+            <div class="login-form">
+               <form  action='/login' method='POST'>
+                  <div class="form-group">
+                    <label>Username : </label>   
+                    <input type="text" class="form-control" placeholder="Enter Username" name="username" > 
+                  </div>
+                  <div class="form-group">
+                    <label>Password : </label>   
+                    <input type="password" class="form-control" placeholder="Enter Password" name="password" >  
+                  </div>
+                  <button type="submit" class="btn btn-black">Login</button>
+                  <button onclick="location.href='/users/signup'" type="button" class="btn btn-secondary">Register</button>
+               </form>
+            </div>
+         </div>
+      </div>
 {{#if error}}
 <div>{{error}}</div>
 {{else}}
 {{/if}}
-
-<a href='/users/signup'>Need to register? Click here to sign-up</a>
