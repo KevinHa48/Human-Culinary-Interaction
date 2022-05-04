@@ -37,14 +37,14 @@
 </nav>
 <br>
 <br>
-<div class="container-fluid">
-    <div class="row row-cols-4 g-4">
+<div class="all-recipes container-fluid">
+    <div class="row g-4">
         {{#each recipes}}
-        <div class="col">
+        <div class="col-12 col-lg-6 col-xl-4">
                 <a href="/recipes/{{_id}}" class="text-decoration-none active">
-                <div class="card">
+                <div class="card h-100">
                     {{#if img}}
-                    <img src="{{img}}" class="card-img-top" style="max-height: 15rem;" alt="">
+                    <img src="{{img}}" class="card-img-top recipe-img" style="max-height: 15rem;" alt="">
                     {{/if}}
                     <div class="card-body">
                         <h2 class="card-title text-dark">{{title}}</h2>

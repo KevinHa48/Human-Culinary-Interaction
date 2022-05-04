@@ -1,35 +1,54 @@
-<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<link
+  href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+  rel="stylesheet"
+  id="bootstrap-css"
+/>
+<script
+  src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+></script>
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 
-
 <div class="sidenav">
-         <div class="login-main-text">
-            <h2>Application<br> Signup Page</h2>
-            <p>Enter info to register an account.</p>
-         </div>
-      </div>
-      <div class="main">
-         <div class="col-md-6 col-sm-12">
-            <div class="login-form">
-               <form action='/users/signup' method='POST'>
-                  <div class="form-group">
-                    {{#if error}}
-                        <div>{{error}}</div>
-                        {{else}}
-                    {{/if}}
-                  </div>
-                  <div class="form-group">
-                    <label>Username : </label>   
-                    <input type="text" class="form-control" placeholder="Enter Username" name="username" > 
-                  </div>
-                  <div class="form-group">
-                    <label>Password : </label>   
-                    <input type="password" class="form-control" placeholder="Enter Password" name="password" >  
-                  </div>
-                  <button type="submit" class="btn btn-black">Register</button>
-                  <button onclick="location.href='/users/'" type="button" class="btn btn-secondary">Login</button>
-               </form>
-            </div>
-         </div>
-      </div>
+  <div class="login-main-text">
+    <h2>Application<br /> Signup Page</h2>
+    <p>Enter info to register an account.</p>
+  </div>
+</div>
+<div class="main">
+  <div class="col-md-6 col-sm-12">
+    <div class="login-form">
+      <form action="/users/signup" method="POST">
+        <div class="form-group">
+          {{#if error}}
+            <div>{{error}}</div>
+          {{else}}
+          {{/if}}
+        </div>
+        <div class="form-group">
+          <label>Username : </label>
+          <input
+            type="text"
+            class="form-control"
+            placeholder="Enter Username"
+            name="username"
+          />
+        </div>
+        <div class="form-group">
+          <label>Password : </label>
+          <input
+            type="password"
+            class="form-control"
+            placeholder="Enter Password"
+            name="password"
+          />
+        </div>
+        <button type="submit" class="btn btn-black">Register</button>
+        <button
+          onclick="location.href='/users/'"
+          type="button"
+          class="btn btn-secondary"
+        >Login</button>
+      </form>
+    </div>
+  </div>
+</div>

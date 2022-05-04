@@ -51,7 +51,7 @@ router.post('/signup', async (req, res) => {
     try {
         const inserted = await usersData.createUser(username, password);
         if (inserted.userInserted) {
-            res.redirect('/recipes');
+            res.redirect('/users');
         } else {
             res.status(500).render('users/signup', { title: 'Sign Up Page', error: 'Internal Server Error' });
         }
