@@ -68,10 +68,19 @@
             <p class="text-dark">{{recipe.directions}}</p>
             <br>
             <br>
-                <div class="float-end">
+            
+            {{#if username}}
+            <form class="float-end" method="post" action="/recipes/like/{{recipe._id}}">
+                <input class="btn btn-success" type="submit" value="Like Post">
+            </form>
+            {{/if}}
+
+            <br>
+            <div class="float-end">
                 <img src="/public/likes.png" width="40" height="40" class="mx-3" alt="">
-            <h4>{{recipe.likes}} Likes</h4>
+                <h4>{{recipe.likes}} Likes</h4>
             </div>
+            <br>
             <br>
             <br>
             <h3>Comments:</h3>

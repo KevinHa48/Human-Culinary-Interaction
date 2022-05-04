@@ -41,14 +41,14 @@ router.get('/:id', async (req, res) => {
 });
 
 router.post('/', async (req, res) => {
-    const { title, img, poster, description, ingredients } = req.body;
+    const { title, img, poster, description, directions, ingredients } = req.body;
     if (!title || !img || !poster || !description || !ingredients) {
         res.status(400).render('error', { error: 'missing fields' });
         return;
     }
 
     try {
-        const newRecipe = await recipeData.create(title, img, poster, description, ingredients);
+        const newRecipe = await recipeData.create(title, img, poster, description, directions, ingredients);
         res.status(200).render('recipes/recipe', { recipe: newRecipe });
     } catch (e) {
         res.status(500).render('error', { error: e.message });
@@ -66,7 +66,23 @@ router.post('/comments/:id', async (req, res) => {
     }
 
     try {
-        newRecipe = await recipeData.addComment(req.params.id, poster, commentText);
+        let newRecipe = await recipeData.addComment(req.params.id, poster, commentText);
+        res.status(200).render(`recipes/recipe`, { recipe: newRecipe, username: username });
+    } catch (e) {
+        res.status(500).render('error', { error: e.message });
+    }
+});
+
+router.post('/like/:id', async (req, res) => {
+    const username = req.session && req.session.user ? req.session.user : undefined;
+
+    if (!username) {
+        res.status(400).render('error', { error: 'must be logged in to like' });
+        return;
+    }
+
+    try {
+        let newRecipe = await recipeData.addLike(req.params.id);
         res.status(200).render(`recipes/recipe`, { recipe: newRecipe, username: username });
     } catch (e) {
         res.status(500).render('error', { error: e.message });

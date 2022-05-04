@@ -25,6 +25,14 @@ app.use(
     })
 );
 
+app.use('/recipes/create', (req, res, next) => {
+    if (!req.session.user) {
+        return res.redirect('/recipes');
+    } else {
+        return next();
+    }
+});
+
 configRoutes(app);
 
 app.listen(3000, () => {
