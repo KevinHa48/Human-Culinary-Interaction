@@ -80,3 +80,8 @@ body {
     background-color: #000 !important;
     color: #fff;
 }
+
+#preview {
+    max-width: 200px;
+    max-height: 200px;
+}

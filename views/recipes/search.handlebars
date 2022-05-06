@@ -30,7 +30,6 @@
         <img src="/public/search.png" width="40" height="40" class="me-1 d-inline-block align-top" alt="">
         <span class="me-4 fs-4 fw-bold text-dark navbar-text">Search</span>
     </a>
-
     <a class="text-decoration-none" href="/users">
         <img src="/public/login symbol.png" width="40" height="40" class="me-1 d-inline-block align-top" alt="">
         <span class="me-4 fs-4 fw-bold text-dark navbar-text">Login</span>
@@ -45,26 +44,17 @@
 </nav>
 <br>
 <br>
-<div class="all-recipes container-fluid">
-    <div class="row g-4">
-        {{#each recipes}}
-        <div class="col-12 col-lg-6 col-xl-4">
-                <a href="/recipes/{{_id}}" class="text-decoration-none active">
-                <div class="card h-100">
-                    {{#if img}}
-                    <img src="{{img}}" class="card-img-top recipe-img" style="max-height: 15rem;" alt="">
-                    {{/if}}
-                    <div class="card-body">
-                        <h2 class="card-title text-dark">{{title}}</h2>
-                        {{#if description}}
-                            <p class="card-text text-dark" style="--bs-text-opacity: .7;">{{description}}</p>
-                        {{/if}}
-                        <small class="card-text text-dark" style="--bs-text-opacity: .5;">Recipe by {{poster}}</small>
-                    </div>
-                    </div>
-                </a>
-        </div>
-        {{/each}}
+<div class="container px-5 my-5">
+    <div class="mb-3">
+        {{#if error}}
+        <div class="me-4 fs-4 fw-bold text-danger navbar-text"> {{error}}</div>
+        {{/if}}
+        <form action="/recipes/search" method="POST">
+        <label class="form-label" for="search">Search for Recipe by Title</label>
+        <input class="form-control" type="text" name="searchTerm" placeholder="Recipe Title" id="search"/>
+        <br/>
+        <button class="btn btn-primary btn-lg" type="submit">Search</button>
+        </form>
     </div>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>

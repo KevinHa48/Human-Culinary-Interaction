@@ -26,6 +26,16 @@ router.get('/create', async (req, res) => {
         return;
     }
 });
+router.get('/search', async (req, res) => {
+    const username = req.session && req.session.user ? req.session.user : undefined;
+
+    try {
+        res.render('recipes/search', { username: username });
+    } catch (e) {
+        res.status(404).render('error', { error: e });
+        return;
+    }
+});
 
 router.get('/:id', async (req, res) => {
     const username = req.session && req.session.user ? req.session.user : undefined;
@@ -40,6 +50,17 @@ router.get('/:id', async (req, res) => {
     }
 });
 
+router.post('/delete/:id', async (req, res) => {
+    const username = req.session && req.session.user ? req.session.user : undefined;
+
+    try {
+        await recipeData.remove(req.params.id);
+        res.redirect('/recipes/');
+    } catch (e) {
+        res.status(404).render('error', { error: 'Recipe not found' });
+        return;
+    }
+});
 router.post('/', async (req, res) => {
     const { title, img, poster, description, directions, ingredients } = req.body;
     if (!title || !img || !poster || !description || !ingredients) {
@@ -49,9 +70,41 @@ router.post('/', async (req, res) => {
 
     try {
         const newRecipe = await recipeData.create(title, img, poster, description, directions, ingredients);
+        res.json({ recipe: newRecipe });
+    } catch (e) {
+        res.status(500).render('error', { error: e.message });
+    }
+});
+
+router.post('/update/:id', async (req, res) => {
+    const { title, img, description, directions, ingredients } = req.body;
+    if (!title || !img || !description || !ingredients) {
+        res.status(400).render('error', { error: 'missing fields' });
+        return;
+    }
+
+    try {
+        const newRecipe = await recipeData.update(req.params.id, title, description, img, ingredients, directions);
         res.status(200).render('recipes/recipe', { recipe: newRecipe });
     } catch (e) {
         res.status(500).render('error', { error: e.message });
+    }
+});
+
+router.post('/search/', async (req, res) => {
+    const username = req.session && req.session.user ? req.session.user : undefined;
+    const searchTerm = req.body.searchTerm;
+
+    try {
+        const allRecipes = await recipeData.searchByTitle(searchTerm);
+        if (allRecipes.length > 0) {
+            res.render('recipes/allrecipes', { recipes: allRecipes, username: username });
+        } else {
+            res.render('recipes/search', { username: username, error: 'No Recipes with that title' });
+        }
+    } catch (e) {
+        res.status(400).render('recipes/search', { username: username, error: e });
+        return;
     }
 });
 

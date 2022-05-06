@@ -14,6 +14,10 @@
     </a>
     <div class="float-end">
     {{#if username}}
+    <a class="text-decoration-none" href="/recipes/search">
+        <img src="/public/search.png" width="40" height="40" class="me-1 d-inline-block align-top" alt="">
+        <span class="me-4 fs-4 fw-bold text-dark navbar-text">Search</span>
+    </a>
     <span class="me-4 fs-4 fw-bold text-dark navbar-text">Logged in as: {{username}}</span>
         <a class="text-decoration-none" href="/recipes/create">
         <img src="/public/add symbol.png" width="40" height="40" class="me-1 d-inline-block align-top" alt="">
@@ -24,6 +28,10 @@
         <span class="me-4 fs-4 fw-bold text-dark navbar-text">Logout</span>
     </a>
     {{else}}
+    <a class="text-decoration-none" href="/recipes/search">
+        <img src="/public/search.png" width="40" height="40" class="me-1 d-inline-block align-top" alt="">
+        <span class="me-4 fs-4 fw-bold text-dark navbar-text">Search</span>
+    </a>
 
     <a class="text-decoration-none" href="/users">
         <img src="/public/login symbol.png" width="40" height="40" class="me-1 d-inline-block align-top" alt="">
@@ -49,6 +57,9 @@
             <label class="form-label" for="image">Image</label>
             <input class="form-control" id="image" type="url" placeholder="Image" data-sb-validations="required" required />
             <div class="invalid-feedback" data-sb-feedback="image:required">Image is required.</div>
+        </div>
+        <div id="image_preview" class="mb-3" style="display: none;">
+            <img id="preview" src="" alt="image not functional"></img>
         </div>
         <div class="mb-3">
             <label class="form-label" for="descrption">Description</label>
