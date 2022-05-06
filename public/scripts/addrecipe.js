@@ -53,6 +53,15 @@ $(document).ready(function () {
         });
     });
 
+    $('#image').change(function () {
+        if ($('#image').val() === '') {
+            $('#image_preview').hide();
+        } else {
+            $('#preview').attr('src', $('#image').val());
+            $('#image_preview').show();
+        }
+    });
+
     $('#addStep').click(function () {
         var html = '';
         html += '<div id="inputFormRow">';
