@@ -1,5 +1,5 @@
 $(document).ready(function () {
-    $('#recipeForm').submit(function (event) {
+    $('#submit').click(function (event) {
         event.preventDefault();
 
         let title = $('#title').val();
@@ -7,10 +7,7 @@ $(document).ready(function () {
         let img = $('#image').val();
         let description = $('#descrption').val();
 
-        let steps = '';
-        $('input[name=step]').each(function (index) {
-            steps += `${index + 1}. ${$(this).val()}\n`;
-        });
+        let steps = $('#directions').val();
 
         let ingredientArray = [];
         $('input[name=ingredient]').each(function () {
@@ -24,7 +21,7 @@ $(document).ready(function () {
             ingredientArray[index].units = $(this).val();
         });
 
-        const newRecipe = {
+        const editedRecipe = {
             title: title,
             img: img,
             poster: poster,
@@ -33,13 +30,15 @@ $(document).ready(function () {
             ingredients: ingredientArray,
         };
 
-        console.log(newRecipe);
+        console.log(editedRecipe);
+
+        let id = $('#id').val();
 
         var formSubmitConfig = {
             method: 'POST',
-            url: `/recipes/`,
+            url: `/recipes/update/${id}`,
             contentType: 'application/json',
-            data: JSON.stringify(newRecipe),
+            data: JSON.stringify(editedRecipe),
             //This should never get called means server has errored/input validation in client side insufficient
             error: function (request) {
                 alert('Adding a recipe failed make sure to include steps and ingredients');
@@ -49,35 +48,7 @@ $(document).ready(function () {
 
         $.ajax(formSubmitConfig).then(function (responseMessage) {
             console.log(responseMessage);
-            $('#recipeForm').trigger('reset');
-            $('#image_preview').hide();
-            window.location.replace(`http://localhost:3000/recipes/${responseMessage.recipe._id}`);
-        });
-    });
-
-    $('#image').change(function () {
-        if ($('#image').val() === '') {
-            $('#image_preview').hide();
-        } else {
-            $('#preview').attr('src', $('#image').val());
-            $('#image_preview').show();
-        }
-    });
-
-    $('#addStep').click(function () {
-        var html = '';
-        html += '<div id="inputFormRow">';
-        html += '<div class="input-group mb-3">';
-        html +=
-            '<input type="text" name="step" class="form-control m-input" placeholder="Enter step" autocomplete="off">';
-        html += '<div class="input-group-append">';
-        html += '<button id="removeRow" type="button" class="btn btn-danger">Remove</button>';
-        html += '</div>';
-        html += '</div>';
-
-        $('#stepRows').append(html);
-        $(document).on('click', '#removeRow', function () {
-            $(this).closest('#inputFormRow').remove();
+            location.reload();
         });
     });
 
@@ -97,8 +68,8 @@ $(document).ready(function () {
         html += '</div>';
 
         $('#ingredientRows').append(html);
-        $(document).on('click', '#removeRow', function () {
-            $(this).closest('#inputFormRow').remove();
-        });
+    });
+    $(document).on('click', '#removeRow', function () {
+        $(this).closest('#inputFormRow').remove();
     });
 });

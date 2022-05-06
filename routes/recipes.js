@@ -70,6 +70,21 @@ router.post('/', async (req, res) => {
 
     try {
         const newRecipe = await recipeData.create(title, img, poster, description, directions, ingredients);
+        res.json({ recipe: newRecipe });
+    } catch (e) {
+        res.status(500).render('error', { error: e.message });
+    }
+});
+
+router.post('/update/:id', async (req, res) => {
+    const { title, img, description, directions, ingredients } = req.body;
+    if (!title || !img || !description || !ingredients) {
+        res.status(400).render('error', { error: 'missing fields' });
+        return;
+    }
+
+    try {
+        const newRecipe = await recipeData.update(req.params.id, title, description, img, ingredients, directions);
         res.status(200).render('recipes/recipe', { recipe: newRecipe });
     } catch (e) {
         res.status(500).render('error', { error: e.message });

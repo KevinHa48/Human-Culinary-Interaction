@@ -89,11 +89,11 @@ module.exports = {
         checkString(term, 'search term');
 
         //const queryId = stringToId(id);
-        
+
         const recipeCollection = await recipes();
         const recipeList = await recipeCollection.find({ title: term }).toArray();
         if (recipeList === null) throw new Error('No recipe with that title.');
-        for (recipe of recipeList){
+        for (recipe of recipeList) {
             recipe._id = recipe._id.toString();
         }
 
@@ -116,16 +116,14 @@ module.exports = {
         return { recipeId: id, deleted: true };
     },
 
-    async update(title, poster, description, ingredients, comments, likes) {
+    async update(id, title, description, img, ingredients, directions) {
         if (!title) throw new Error('No title provided.');
-        if (!poster) throw new Error('No poster provided.');
         if (!description) throw new Error('No description provided.');
         if (!ingredients) throw new Error('No ingredients provided.');
         if (!img) throw new Error('No title provided.');
         if (!directions) throw new Error('No directions provided.');
 
         checkString(title, 'title');
-        checkString(poster, 'poster');
         checkString(description, 'description');
         checkString(img, 'img');
         checkString(directions, 'directions');
@@ -134,13 +132,10 @@ module.exports = {
 
         const updatedRecipeInfo = {
             title: title,
-            ing: img,
-            poster: poster,
+            img: img,
             description: description,
             directions: directions,
             ingredients: ingredients,
-            comments: comments,
-            likes: likes,
         };
 
         const recipeCollection = await recipes();

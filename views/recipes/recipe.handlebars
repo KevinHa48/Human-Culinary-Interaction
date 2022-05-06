@@ -62,7 +62,12 @@
                 <form class="float-end" method="post" action="/recipes/delete/{{recipe._id}}">
                     <input class="btn btn-danger" type="submit" value="Delete Your Post">
                 </form>
+                <!-- Button trigger modal -->
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                Edit Recipe
+                </button>
             {{/ifeq}}
+
             <br>
             <p class="text-dark">{{recipe.description}}</p>
             <br>
@@ -126,6 +131,59 @@
         </div>
     </div>
 </div>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Edit this recipe</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+          <form id="recipeForm">
+                <label class="form-label" for="title">Title</label>
+                <input class="form-control" id="title" name="title" type="text" placeholder="Title" value='{{recipe.title}}' required/>
+                <label class="form-label" for="image">Image</label>
+                <input class="form-control" id="image" name="img" type="url" placeholder="Image" value='{{recipe.img}}'  required />
+                <label class="form-label" for="descrption">Descrption</label>
+                <textarea class="form-control" id="descrption" type="text" name="description" placeholder="Descrption" style="height: 10rem;" required>{{recipe.description}}</textarea>   
+                <label class="form-label" for="directions">Directions</label>
+                <textarea class="form-control" id="directions" type="text" name="directions" placeholder="Directions" style="height: 10rem;" required>{{recipe.directions}}</textarea>   
+                
+                <label class="form-label" for="ingredients">Ingredients</label>
+                <br>
+                <button id="addIngredient" type="button" class="btn btn-success">Add Ingredient</button>
+                <br>
+                <div id="ingredientRows">
+                {{#each recipe.ingredients}}
+                    <div id="inputFormRow">
+                        <div class="input-group mb-3">
+                            <input type="text" name="ingredient" class="form-control m-input" placeholder="Enter ingredient" value='{{food}}' autocomplete="off" required>
+                            <input type="number" name="quantity" class="form-control m-input" placeholder="Enter quantity" value='{{quantity}}' autocomplete="off" required>
+                            <input type="text" name="units" class="form-control m-input" placeholder="Enter units" value='{{units}}' autocomplete="off" required>
+                                                    <div class="input-group-append">
+                            <button id="removeRow" type="button" class="btn btn-danger">Remove</button>
+                            </div>                        
+                        </div>
+                    </div>
+                {{/each}}
+                </div>
+                <input id="likes" name="likes" value={{recipe.likes}} hidden> 
+                <div id='username' val='{{username}}' disabled></div> 
+                <input id="id" name="id" value={{recipe._id}} hidden>       
+            </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button id="submit" type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
+<script src="/public/scripts/editrecipe.js"></script>
 </body>
