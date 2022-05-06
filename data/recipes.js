@@ -84,6 +84,21 @@ module.exports = {
 
         return recipe;
     },
+    async searchByTitle(term) {
+        if (!term) throw new Error('You must provide a term to search for.');
+        checkString(term, 'search term');
+
+        //const queryId = stringToId(id);
+        
+        const recipeCollection = await recipes();
+        const recipeList = await recipeCollection.find({ title: term }).toArray();
+        if (recipeList === null) throw new Error('No recipe with that title.');
+        for (recipe of recipeList){
+            recipe._id = recipe._id.toString();
+        }
+
+        return recipeList;
+    },
 
     async remove(id) {
         if (!id) throw new Error('You must provide an id to search for.');

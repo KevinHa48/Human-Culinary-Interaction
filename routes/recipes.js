@@ -26,6 +26,16 @@ router.get('/create', async (req, res) => {
         return;
     }
 });
+router.get('/search', async (req, res) => {
+    const username = req.session && req.session.user ? req.session.user : undefined;
+
+    try {
+        res.render('recipes/search', { username: username });
+    } catch (e) {
+        res.status(404).render('error', { error: e });
+        return;
+    }
+});
 
 router.get('/:id', async (req, res) => {
     const username = req.session && req.session.user ? req.session.user : undefined;
@@ -52,6 +62,24 @@ router.post('/', async (req, res) => {
         res.status(200).render('recipes/recipe', { recipe: newRecipe });
     } catch (e) {
         res.status(500).render('error', { error: e.message });
+    }
+});
+
+router.post('/search/', async (req, res) => {
+    const username = req.session && req.session.user ? req.session.user : undefined;
+    const searchTerm = req.body.searchTerm;
+
+    try {
+        const allRecipes = await recipeData.searchByTitle(searchTerm);
+        if (allRecipes.length > 0){
+            console.log(allRecipes.length);
+            res.render('recipes/allrecipes', { recipes: allRecipes, username: username });
+        }else{
+            res.render('recipes/search', { username: username, error: "No Recipes with that title" });;
+        }
+    } catch (e) {
+        res.status(400).render('recipes/search', { username: username, error: e });;
+        return;
     }
 });
 
