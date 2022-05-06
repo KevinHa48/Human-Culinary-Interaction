@@ -98,7 +98,6 @@ router.post('/search/', async (req, res) => {
     try {
         const allRecipes = await recipeData.searchByTitle(searchTerm);
         if (allRecipes.length > 0) {
-            console.log(allRecipes.length);
             res.render('recipes/allrecipes', { recipes: allRecipes, username: username });
         } else {
             res.render('recipes/search', { username: username, error: 'No Recipes with that title' });

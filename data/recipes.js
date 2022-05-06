@@ -91,7 +91,7 @@ module.exports = {
         //const queryId = stringToId(id);
 
         const recipeCollection = await recipes();
-        const recipeList = await recipeCollection.find({ title: term }).toArray();
+        const recipeList = await recipeCollection.find({ title: { $regex: term, $options: 'i' } }).toArray();
         if (recipeList === null) throw new Error('No recipe with that title.');
         for (recipe of recipeList) {
             recipe._id = recipe._id.toString();
