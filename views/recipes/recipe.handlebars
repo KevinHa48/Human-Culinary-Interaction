@@ -16,6 +16,10 @@
     </a>
     <div class="float-end">
     {{#if username}}
+    <a class="text-decoration-none" href="/recipes/search">
+        <img src="/public/search.png" width="40" height="40" class="me-1 d-inline-block align-top" alt="">
+        <span class="me-4 fs-4 fw-bold text-dark navbar-text">Search</span>
+    </a>
     <span class="me-1 fs-4 fw-bold text-dark navbar-text">Logged in as: </span>
     <span class="me-4 fs-4 fw-bold text-danger navbar-text">{{username}}</span>
         <a class="text-decoration-none" href="/recipes/create">
@@ -27,6 +31,10 @@
         <span class="me-4 fs-4 fw-bold text-dark navbar-text">Logout</span>
     </a>
     {{else}}
+    <a class="text-decoration-none" href="/recipes/search">
+        <img src="/public/search.png" width="40" height="40" class="me-1 d-inline-block align-top" alt="">
+        <span class="me-4 fs-4 fw-bold text-dark navbar-text">Search</span>
+    </a>
 
     <a class="text-decoration-none" href="/users">
         <img src="/public/login symbol.png" width="40" height="40" class="me-1 d-inline-block align-top" alt="">
