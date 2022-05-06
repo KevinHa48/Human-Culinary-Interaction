@@ -85,8 +85,8 @@ module.exports = {
         return recipe;
     },
     async searchByTitle(term) {
-        if (!term) throw new Error('You must provide an id to search for.');
-        if (typeof term !== 'string') throw new Error('Id must be a string.');
+        if (!term) throw new Error('You must provide a term to search for.');
+        checkString(term, 'search term');
 
         //const queryId = stringToId(id);
         

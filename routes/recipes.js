@@ -71,9 +71,14 @@ router.post('/search/', async (req, res) => {
 
     try {
         const allRecipes = await recipeData.searchByTitle(searchTerm);
-        res.render('recipes/allrecipes', { recipes: allRecipes, username: username });
+        if (allRecipes.length > 0){
+            console.log(allRecipes.length);
+            res.render('recipes/allrecipes', { recipes: allRecipes, username: username });
+        }else{
+            res.render('recipes/search', { username: username, error: "No Recipes with that title" });;
+        }
     } catch (e) {
-        res.status(404).render('error', { error: e });
+        res.status(400).render('recipes/search', { username: username, error: e });;
         return;
     }
 });
