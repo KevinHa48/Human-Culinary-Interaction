@@ -50,6 +50,17 @@ router.get('/:id', async (req, res) => {
     }
 });
 
+router.post('/delete/:id', async (req, res) => {
+    const username = req.session && req.session.user ? req.session.user : undefined;
+
+    try {
+        await recipeData.remove(req.params.id);
+        res.redirect('/recipes/');
+    } catch (e) {
+        res.status(404).render('error', { error: 'Recipe not found' });
+        return;
+    }
+});
 router.post('/', async (req, res) => {
     const { title, img, poster, description, directions, ingredients } = req.body;
     if (!title || !img || !poster || !description || !ingredients) {
@@ -71,14 +82,14 @@ router.post('/search/', async (req, res) => {
 
     try {
         const allRecipes = await recipeData.searchByTitle(searchTerm);
-        if (allRecipes.length > 0){
+        if (allRecipes.length > 0) {
             console.log(allRecipes.length);
             res.render('recipes/allrecipes', { recipes: allRecipes, username: username });
-        }else{
-            res.render('recipes/search', { username: username, error: "No Recipes with that title" });;
+        } else {
+            res.render('recipes/search', { username: username, error: 'No Recipes with that title' });
         }
     } catch (e) {
-        res.status(400).render('recipes/search', { username: username, error: e });;
+        res.status(400).render('recipes/search', { username: username, error: e });
         return;
     }
 });

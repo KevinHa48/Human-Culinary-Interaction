@@ -58,6 +58,11 @@
         <div class="col">
             <h1>{{recipe.title}}</h1>
             <p class="text-dark" style="--bs-text-opacity: .5;">Recipe by {{recipe.poster}}</p>
+            {{#ifeq username recipe.poster}}
+                <form class="float-end" method="post" action="/recipes/delete/{{recipe._id}}">
+                    <input class="btn btn-danger" type="submit" value="Delete Your Post">
+                </form>
+            {{/ifeq}}
             <br>
             <p class="text-dark">{{recipe.description}}</p>
             <br>
@@ -78,7 +83,7 @@
             <br>
             
             {{#if username}}
-            <form class="float-end" method="post" action="/recipes/like/{{recipe._id}}">
+            <form class="float-end" method="POST" action="/recipes/like/{{recipe._id}}">
                 <input class="btn btn-success" type="submit" value="Like Post">
             </form>
             {{/if}}
